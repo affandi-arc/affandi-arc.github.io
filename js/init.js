@@ -187,7 +187,7 @@ const failSubmit = document.querySelector('#message-warning')
 
 form.addEventListener('submit', e => {
    e.preventDefault();
-   imgLoading.style.display = 'inline'; ;
+   imgLoading.style.display = 'inline'; 
    fetch(scriptURL, { method: 'POST', body: new FormData(form)
 })
    .then(response => {console.log('Success!', response)
