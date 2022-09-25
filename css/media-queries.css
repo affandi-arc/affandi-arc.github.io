@@ -112,7 +112,7 @@
 	   width: 48px;
 		height: 48px;
 		text-align: left;
-		background-color: #CC5200;
+		background-color: #12dde4;
 		position: relative;
       border: none;
       float: right;
@@ -124,6 +124,10 @@
       position: relative;
       top: 0px;
       right: 30px;
+   }
+
+   #nav-wrap > a:hover {
+      background-color: #10a0a5;
    }
 
 	#nav-wrap > a:before,
