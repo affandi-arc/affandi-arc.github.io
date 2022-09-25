@@ -52,7 +52,7 @@ header .banner {
    vertical-align: middle;
    margin: 0 auto;
    width: 85%;
-   padding-bottom: 30px;s
+   padding-bottom: 30px;
    text-align: center;
 }
 
@@ -140,6 +140,9 @@ header .scrolldown a:hover { color: #11ABB0; }
    left: 0;
    top: 0;
 }
+#nav-wrap li a:hover { color: #12dde4;
+opacity: 0.8; }
+
 .opaque { background-color: #333; }
 
 /* hide toggle button */
@@ -328,74 +331,59 @@ ul#nav li.current a { color: #00f0dc; }
 
 .flask {
   	width: 60%;
-  	-moz-animation: photoshop 2s ease;
-  	-webkit-animation: photoshop 2s ease;
+  	-moz-animation: flask 2s ease;
+  	-webkit-animation: flask 2s ease;
 }
 .network {
   	width: 77%;
-  	-moz-animation: illustrator 2s ease;
-  	-webkit-animation: illustrator 2s ease;
+  	-moz-animation: network 2s ease;
+  	-webkit-animation: network 2s ease;
 }
 
 .htmlcss {
   	width: 85%;
-  	-moz-animation: css 2s ease;
-  	-webkit-animation: css 2s ease;
+  	-moz-animation: htmlcss 2s ease;
+  	-webkit-animation: htmlcss 2s ease;
 }
 .devops {
   	width: 75%;
-  	-moz-animation: html5 2s ease;
-  	-webkit-animation: html5 2s ease;
+  	-moz-animation: devops 2s ease;
+  	-webkit-animation: devops 2s ease;
 }
 
-@-moz-keyframes photoshop {
+@-moz-keyframes flask {
   0%   { width: 0px;  }
   100% { width: 60%;  }
 }
-@-moz-keyframes illustrator {
+@-moz-keyframes network {
   0%   { width: 0px;  }
-  100% { width: 55%;  }
-}
-@-moz-keyframes wordpress {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-moz-keyframes css {
-  0%   { width: 0px;  }
-  100% { width: 90%;  }
-}
-@-moz-keyframes html5 {
-  0%   { width: 0px;  }
-  100% { width: 80%;  }
-}
-@-moz-keyframes jquery {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
+  100% { width: 77%;  }
 }
 
-@-webkit-keyframes photoshop {
+@-moz-keyframes htmlcss {
+  0%   { width: 0px;  }
+  100% { width: 85%;  }
+}
+@-moz-keyframes devops {
+  0%   { width: 0px;  }
+  100% { width: 75%;  }
+}
+
+@-webkit-keyframes flask {
   0%   { width: 0px;  }
   100% { width: 60%;  }
 }
-@-webkit-keyframes illustrator {
+@-webkit-keyframes network {
   0%   { width: 0px;  }
-  100% { width: 55%;  }
+  100% { width: 77%;  }
 }
-@-webkit-keyframes wordpress {
+@-webkit-keyframes htmlcss {
   0%   { width: 0px;  }
-  100% { width: 50%;  }
+  100% { width: 85%;  }
 }
-@-webkit-keyframes css {
+@-webkit-keyframes devops {
   0%   { width: 0px;  }
-  100% { width: 90%;  }
-}
-@-webkit-keyframes html5 {
-  0%   { width: 0px;  }
-  100% { width: 80%;  }
-}
-@-webkit-keyframes jquery {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
+  100% { width: 75%;  }
 }
 
 /* ------------------------------------------------------------------ */

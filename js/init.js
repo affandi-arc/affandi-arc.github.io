@@ -177,30 +177,31 @@
    // });
    
    
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbwujSNjVC6l7ZKSDJcJ82_hJP2ghkS9VNcRKYIJBAXaVbM0som5e6-xL9qGk5LrfpFpmg/exec'
+   const form = document.forms['contactForm']
+   const imgLoading = document.querySelector('#image-loader')
+   const statusSubmit = document.querySelector('#message-success')
+   const failSubmit = document.querySelector('#message-warning')
+   
+   form.addEventListener('submit', e => {
+      e.preventDefault();
+      imgLoading.style.display = 'inline';
+      $('#image-loader').fadeIn(); 
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)
+   })
+   .then(response => {console.log('Success!', response)
+      $('#image-loader').fadeOut(3000); 
+      $('#message-success').fadeIn(2000);
+      form.reset();
+   })
+   
+      .catch(error => {console.error('Error!', error.message)
+      imgLoading.style.display = 'none';
+      failSubmit.style.display = 'block';
+   })
+   })
 });
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwujSNjVC6l7ZKSDJcJ82_hJP2ghkS9VNcRKYIJBAXaVbM0som5e6-xL9qGk5LrfpFpmg/exec'
-const form = document.forms['contactForm']
-const imgLoading = document.querySelector('#image-loader')
-const statusSubmit = document.querySelector('#message-success')
-const failSubmit = document.querySelector('#message-warning')
-
-form.addEventListener('submit', e => {
-   e.preventDefault();
-   imgLoading.style.display = 'inline'; 
-   fetch(scriptURL, { method: 'POST', body: new FormData(form)
-})
-   .then(response => {console.log('Success!', response)
-   imgLoading.style.display = 'none';
-   statusSubmit.style.display = 'block';
-   form.reset();
-})
-
-   .catch(error => {console.error('Error!', error.message)
-   imgLoading.style.display = 'none';
-   failSubmit.style.display = 'block';
-})
-})
 
 
 
