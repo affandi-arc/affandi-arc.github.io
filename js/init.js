@@ -184,15 +184,15 @@
    
    form.addEventListener('submit', e => {
       e.preventDefault();
-      $('#image-loader').fadeIn(1000); 
-      $('#contactForm').fadeOut(3000);
+      $('#image-loader').fadeIn(2000); 
+      $('#contactForm').fadeOut(5000);
       fetch(scriptURL, { method: 'POST', body: new FormData(form)
    })
    .then(response => {console.log('Success!', response)
       $('#image-loader').fadeOut(3000); 
       $('#message-success').fadeIn(2000);
       $('#contactForm').trigger("reset");
-      $('#contactForm').fadeIn(2000);
+      $('#contactForm').fadeIn(500);
    })
    
       .catch(error => {console.error('Error!', error.message)
