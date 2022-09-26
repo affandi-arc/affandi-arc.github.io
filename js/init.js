@@ -180,19 +180,19 @@
    const scriptURL = 'https://script.google.com/macros/s/AKfycbwujSNjVC6l7ZKSDJcJ82_hJP2ghkS9VNcRKYIJBAXaVbM0som5e6-xL9qGk5LrfpFpmg/exec'
    const form = document.forms['contactForm']
    const imgLoading = document.querySelector('#image-loader')
-   const statusSubmit = document.querySelector('#message-success')
    const failSubmit = document.querySelector('#message-warning')
    
    form.addEventListener('submit', e => {
       e.preventDefault();
-      imgLoading.style.display = 'inline';
-      $('#image-loader').fadeIn(); 
+      $('#image-loader').fadeIn(1000); 
+      $('#contactForm').fadeOut(3000);
       fetch(scriptURL, { method: 'POST', body: new FormData(form)
    })
    .then(response => {console.log('Success!', response)
       $('#image-loader').fadeOut(3000); 
       $('#message-success').fadeIn(2000);
-      form.reset();
+      $('#contactForm').trigger("reset");
+      $('#contactForm').fadeIn(2000);
    })
    
       .catch(error => {console.error('Error!', error.message)
