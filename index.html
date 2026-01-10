@@ -1,560 +1,849 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affandi's Arc | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important; /* PENTING: Memotong elemen yang keluar jalur */
+            position: relative;
+        }
 
-   <!--- Basic Page Needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Affandi's Arc Web</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #38bdf8; /* Sky Blue */
+            --secondary: #64748b;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(30, 41, 59, 0.7);
+        }
 
-   <!-- Mobile Specific Metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
 
-	<!-- CSS================================================== -->
-   <link rel="stylesheet" href="css/default.css">
-	<link rel="stylesheet" href="css/layout.css">
-   <link rel="stylesheet" href="css/media-queries.css">
-   <link rel="stylesheet" href="css/magnific-popup.css">
+        /* Scrollbar Customization */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
 
-   <!-- Script
-   ================================================== -->
-	<script src="js/modernizr.js"></script>
+        /* Navbar Glassmorphism */
+        .navbar {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
 
-   <!-- Favicons
-	===========================================felixcy======= -->
-	<link rel="shortcut icon" href="favicon1.png" >
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary) !important;
+            font-family: 'JetBrains Mono', monospace;
+        }
 
+        .nav-link {
+            color: var(--text-light) !important;
+            margin: 0 10px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 40%);
+            width: 100%; 
+            overflow: hidden;
+        }
+
+        .hero-img-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-img-box img {
+            border-radius: 20px;
+            box-shadow: 20px 20px 0px var(--primary);
+            transition: transform 0.3s;
+            max-width: 80%;
+        }
+
+        .hero-img-box img:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 25px 25px 0px var(--primary);
+        }
+
+        .hero-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primary);
+            z-index: -1;
+            transition: width 0.3s;
+        }
+
+        .btn-custom:hover {
+            color: var(--bg-dark);
+        }
+
+        .btn-custom:hover::before {
+            width: 100%;
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 60px;
+            display: inline-block;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+
+        /* About & Cards */
+        .card-custom {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--primary);
+        }
+
+        .skill-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .tech-stack img {
+            height: 40px;
+            margin: 10px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .tech-stack img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Timeline Experience */
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--secondary);
+            margin-left: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            left: -9px;
+            top: 5px;
+            border: 4px solid var(--bg-dark);
+        }
+
+        .date-badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Outputs / Thesis */
+        .output-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .output-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Contact */
+        .contact-box {
+            text-align: center;
+        }
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: var(--bg-card);
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 991px) {
+            .hero { height: auto; padding: 150px 0 100px 0; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-img-box { margin-bottom: 50px; text-align: center; }
+            .hero-img-box img { max-width: 60%; }
+        }
+
+        /* Project Portfolio Styles */
+        .project-card {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .project-img-wrapper {
+            width: 100%;
+            height: 200px; 
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .text-xs {
+            font-size: 0.85rem;
+        }
+
+        .project-details ul li {
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background-color: var(--bg-card);
+                padding: 20px;
+                margin-top: 15px;
+                border-radius: 10px;
+                border: 1px solid rgba(255,255,255,0.05);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+
+            .navbar-nav .nav-link {
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .navbar-nav .nav-link:hover::after {
+                width: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding-top: 130px;
+                padding-bottom: 60px;
+                text-align: center;
+                overflow-x: hidden;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .lead {
+                font-size: 1rem;
+                padding-right: 0 !important;
+            }
+
+            .hero-img-box img {
+                max-width: 70%;
+                margin-bottom: 40px;
+            }
+
+            .btn-custom {
+                width: 100%;
+                margin-bottom: 15px;
+                margin-right: 0 !important;
+            }
+            
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .timeline {
+                margin-left: 0;
+                border-left: 2px solid var(--secondary);
+                padding-left: 0;
+            }
+
+            .timeline-item {
+                padding-left: 20px;
+            }
+
+            .timeline-item::before {
+                left: -9px;
+            }
+            
+            .project-img-wrapper {
+                height: 180px;
+            }
+            
+            .social-icons a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                margin: 0 5px;
+            }
+        }
+    </style>
 </head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
 
-<body>
-   <!-- Header
-      ================================================== -->
-   <header id="home">
-      <nav id="nav-wrap">
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#none" title="Hide navigation">Hide navigation</a>
-         <ul id="nav" class="nav">
-            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-            <li><a class="smoothscroll" href="#about">About</a></li>
-	         <li><a class="smoothscroll" href="#resume">Resume</a></li>
-            <li><a class="smoothscroll" href="#portfolio">Galery</a></li>
-            <li><a class="smoothscroll" href="#testimonials">Quotes</a></li>
-            <li><a class="smoothscroll" href="#contact">Contact</a></li>
-         </ul> <!-- end #nav -->
-      </nav> <!-- end #nav-wrap -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                &lt; Faris/&gt;
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Stack</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <!-- Ubah link Gallery -> Portfolio, Quotes -> Certificates -->
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-custom ms-lg-3 mt-3 mt-lg-0">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-      <div class="row banner">
-         <div class="banner-text">
-            <h1 class="responsive-headline">I'm Faris Affandi.</h1>
-            <h3>I'm a Fullstack <span>Web Developer</span><span>, Mobile Developer</span>. <br> Let's <a class="smoothscroll" href="#about">Start scrolling</a>
-            and learn more <a class="smoothscroll" href="#about">About me</a>.</h3>
-            <hr />
-            <ul class="social">
-               <li><a href="https://github.com/affandi-arc" target="_blank"><i class="fa fa-github"></i></a></li>
-               <li><a href="https://www.linkedin.com/in/affandi-ars/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="http://instagram.com/afndi_arc" target="_blank"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-         </div>
-      </div>
-      <p class="scrolldown">
-         <a class="smoothscroll" href="#about" title="Scroll Down"><i class="icon-down-circle"></i></a>
-      </p>
-   </header> <!-- Header End -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center flex-column-reverse flex-lg-row">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <p class="hero-subtitle">Hello, my name is</p>
+                    <h1 class="mb-3">Faris Affandi</h1>
+                    <h3 class="mb-4 text-dim">I am a <span id="typed-text" style="color: var(--primary);"></span></h3>
+                    <p class="lead text-dim mb-5 pe-lg-5">
+                        I'm a Software Engineer and Embedded System Engineer. Let's start scrolling and learn more about me.
+                    </p>
+                    <a href="#contact" class="btn btn-custom me-3">Contact Me</a>
+                    <a href="#portfolio" class="btn btn-outline-light">View Works</a>
+                </div>
+                <div class="col-lg-5 text-center" data-aos="fade-left">
+                    <div class="hero-img-box">
+                        <img src="images/foto.jpg" alt="Faris Affandi" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-   <!-- About Section
-   ================================================== -->
-   <section id="about">
-      <div class="row">
-         <div class="three columns">
-            <img class="profile-pic"  src="images/foto.jpg" alt="" />
-         </div>
-         <div class="nine columns main-col">
-            <h2>About Me</h2>
-            <p>I'm Muchammad Faris Ali Affandi or can call me as Affandi or Faris. I'm fullstack web developer and spesific for backend developer. Graduated From Computer and Network Engineering at Vocational Highschool 1 Mojokerto. interested in Technology and proficient Proficient in applying HTML, Java- Script, and CSS. Familiar using Linux espicially for Debian Environment. </p>
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-up">
+                    <div class="position-relative">
+                        <img src="images/foto.jpg" alt="About Faris" class="img-fluid rounded-3 shadow-lg border border-secondary">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="section-title">
+                        <h2>About Me</h2>
+                    </div>
+                    <p class="text-dim">
+                        I'm Muchammad Faris Ali Affandi, or you can call me Affandi or Faris. I'm a fullstack web developer, specifically a backend developer. 
+                    </p>
+                    <p class="text-dim">
+                        Graduated from <strong>Computer and Network Engineering</strong> at Vocational Highschool 1 Mojokerto. Interested in Technology and proficient in applying HTML, JavaScript, and CSS. Familiar with using Linux, especially the Debian Environment.
+                    </p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i> <strong>Location:</strong> Mojokerto, East Java
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <i class="fas fa-graduation-cap text-primary me-2"></i> <strong>Graduated:</strong> March 2020
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <i class="fas fa-phone text-primary me-2"></i> <strong>Phone:</strong> (+62) 812-3456-7890
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <i class="fas fa-envelope text-primary me-2"></i> <strong>Email:</strong> farisafn008@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding" style="background-color: #162033;">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center" data-aos="fade-up">
+                    <div class="section-title">
+                        <h2>Skills & Stack</h2>
+                    </div>
+                    <p class="text-dim">Stacks I work with based on my experience</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom text-center">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h4>Web & DB Stack</h4>
+                        <p class="text-dim small mb-4">Development Frameworks</p>
+                        <div class="tech-stack d-flex flex-wrap justify-content-center gap-2">
+                            <span class="badge border border-secondary text-light">Laravel</span>
+                            <span class="badge border border-secondary text-light">PostgreSQL</span>
+                            <span class="badge border border-secondary text-light">Flask</span>
+                            <span class="badge border border-secondary text-light">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom text-center">
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
+                        <h4>Backend & Cloud</h4>
+                        <p class="text-dim small mb-4">Server side technologies</p>
+                        <div class="tech-stack d-flex flex-wrap justify-content-center gap-2">
+                            <span class="badge border border-secondary text-light">NodeJS</span>
+                            <span class="badge border border-secondary text-light">Firebase</span>
+                            <span class="badge border border-secondary text-light">Linux (Debian based)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-custom text-center">
+                        <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                        <h4>Infrastructure</h4>
+                        <p class="text-dim small mb-4">Networking & Hardware</p>
+                        <div class="tech-stack d-flex flex-wrap justify-content-center gap-2">
+                            <span class="badge border border-secondary text-light">Network Admin</span>
+                            <span class="badge border border-secondary text-light">CCTV Config</span>
+                            <span class="badge border border-secondary text-light">IoT Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding">
+        <div class="container">
             <div class="row">
-               <div class="columns contact-details">
-                  <h2>Contact Details</h2>
-                  <p class="address">
-						   <span>Affandi Arc</span><br>
-						   <span>Mojokerto,<br>
-						         East Java, Indonesia
-                     </span><br>
-						   <span>(+62) 812-3456-7890</span><br>
-                     <span>farisafn008@gmail.com</span>
-					   </p>
-               </div>
-            </div> <!-- end row -->
-         </div> <!-- end .main-col -->
-      </div>
-   </section> <!-- About Section End-->
-
-
-   <!-- Resume Section
-   ================================================== -->
-   <section id="resume">
-      <!-- Education
-      ----------------------------------------------- -->
-      <div class="row education">
-         <div class="three columns header-col">
-            <h1><span>Education</span></h1>
-         </div>
-         <div class="nine columns main-col">
-            <div class="row item">
-               <div class="twelve columns">
-                  <h3>Vocational School State 1 Mojokerto</h3>
-                  <p class="info">Degree in Computer and Network Engineering <span>&bull;</span> <em class="date">March 2020</em></p>
-               </div>
-            </div> <!-- item end -->
-         </div> <!-- main-col end -->
-      </div> <!-- End Education -->
-
-
-      <!-- Work
-      ----------------------------------------------- -->
-      <div class="row work">
-         <div class="three columns header-col">
-            <h1><span>Experience</span></h1>
-         </div>
-         <div class="nine columns main-col">
-            <div class="row item">
-               <div class="twelve columns">
-                  <h3>Network Engineering Support</h3>
-                  <p class="info">Intership<span>&bull;</span> <em class="date">July 2018 - November 2018</em></p>
-                  <p style="font-size: 110%"> My Jobdesk is : 
-                     <ul>
-                        <li style="font-size: 110%" > • Responsible for maintenance on computer, network equipment and server </li>
-                        <li style="font-size: 110%" > • Perform troubleshooting on computer devices</li>
-                        <li style="font-size: 110%" > • Create and Configuration a new Network Industry </li>
-                        <li style="font-size: 110%" > • Create and install a CCTV network both from ip camera and analog </li>
-                        <li style="font-size: 110%" > • Designing an infrastructure network </li>
-                     </ul>
-                  </p>
-               </div>
-            </div> <!-- item end -->
-            <div class="row item">
-               <div class="twelve columns">
-                  <h3>Computer and Network Store</h3>
-                  <p class="info">Technician <span>&bull;</span> <em class="date">2020 - 2021</em></p>
-                  <p style="font-size: 110%"> My Jobdesk is : 
-                     <ul>
-                        <li style="font-size: 110%" > • Repairing a computer </li>
-                        <li style="font-size: 110%" > • Repairing printer and others</li>
-                        <li style="font-size: 110%" > • Create and installation a LAN </li>
-                        <li style="font-size: 110%" > • Configurate Router </li>
-                     </ul>
-                  </p>
-               </div>
-            </div> <!-- item end -->
-         </div> <!-- main-col end -->
-      </div> <!-- End Work -->
-
-      <!-- Skills
-      ----------------------------------------------- -->
-      <div class="row skill">
-         <div class="three columns header-col">
-            <h1><span>Skills</span></h1>
-         </div>
-         <div class="nine columns main-col">
-				<div class="bars">
-				   <ul class="skills">
-						<li><span class="bar-expand htmlcss"></span><em>Laravel, Postgres Stack</em></li>
-                  <li><span class="bar-expand flask"></span><em>Flask, Mongo stack</em></li>
-						<li><span class="bar-expand devops"></span><em>NodeJS, Firebase Stack </em></li>
-                  <li><span class="bar-expand network"></span><em>Network Administrator</em></li>
-					</ul>
-				</div><!-- end skill-bars -->
-			</div> <!-- main-col end -->
-      </div> <!-- End skills -->
-   </section> <!-- Resume Section End-->
-
-
-   <!-- Galery Section
-   ================================================== -->
-   <section id="portfolio">
-      <div class="row">
-         <div class="twelve columns collapsed">
-            <h1>This Is Only Galery From Internet.</h1>
-            <!-- portfolio-wrapper -->
-            <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
-          	   <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-01" title="">
-                        <img alt="" src="images/portfolio/coffee.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Coffee</h5>
-                              <p>Illustrration</p>
-          					   </div>
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="section-title">
+                        <h2>Experience</h2>
+                    </div>
+                    <p class="text-dim">My professional journey in Networking and Development.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="timeline">
+                        
+                        <div class="timeline-item">
+                            <span class="date-badge">Oct 2025 - Jan 2026</span>
+                            <h5>Full-stack Developer</h5>
+                            <p class="text-dim">CV. Natusi</p>
+                            <p class="text-dim small">
+                                • Architected and developed JELITA (Public Service) and ERM (Electronic Medical Record) using Laravel.<br>
+                                • Maintained SIRAMA (Pharmacy Info System) using CodeIgniter 2 and MySQL.<br>
+                                • Optimized backend algorithms, increasing data processing efficiency by 30%.
+                            </p>
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div> <!-- item end -->
 
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-02" title="">
-                        <img alt="" src="images/portfolio/console.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-                              <h5>Console</h5>
-                              <p>Web Development</p>
-                           </div>
+                        <div class="timeline-item">
+                            <span class="date-badge">Jan 2025 - Mar 2025</span>
+                            <h5>Aviation IT Staff</h5>
+                            <p class="text-dim">PT Angkasa Pura I (Persero)</p>
+                            <p class="text-dim small">
+                                • Developed an innovative smart plug utilizing IoT technology.<br>
+                                • Created comprehensive maintenance workflow for CCTV systems.
+                            </p>
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div> <!-- item end -->
 
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-03" title="">
-                        <img alt="" src="images/portfolio/judah.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Judah</h5>
-                              <p>Webdesign</p>
-          					   </div>
+                        <div class="timeline-item">
+                            <span class="date-badge">July 2020 - Aug 2021</span>
+                            <h5>IT Technician</h5>
+                            <p class="text-dim">Dynasty Computer</p>
+                            <p class="text-dim small">
+                                • Repaired and maintained computers/hardware to reduce downtime.<br>
+                                • Installed and configured network devices (routers, access points).
+                            </p>
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div> <!-- item end -->
 
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-04" title="">
-                        <img alt="" src="images/portfolio/into-the-light.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-                              <h5>Into The Light</h5>
-                              <p>Photography</p>
-                           </div>
+                        <div class="timeline-item">
+                            <span class="date-badge">Aug 2018 - Dec 2018</span>
+                            <h5>IT Support Technician</h5>
+                            <p class="text-dim">PT Media Hamparan Langit</p>
+                            <p class="text-dim small">
+                                • Installed and configured analog CCTV and IPCAM systems.<br>
+                                • Utilized WinBox and Wireshark to monitor and resolve network issues.
+                            </p>
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-               </div> <!-- item end -->
 
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-05" title="">
-                        <img alt="" src="images/portfolio/farmerboy.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Farmer Boy</h5>
-                              <p>Branding</p>
-          					   </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section-padding" style="background-color: #2a354b;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Portfolio</h2>
+                </div>
+                <p class="text-dim">My Design and Development Works</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="card-custom project-card d-flex flex-column h-100">
+                        <div class="project-img-wrapper">
+                            <img src="images/portfolio/jelita.png" alt="JELITA Dashboard">
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-06" title="">
-                        <img alt="" src="images/portfolio/image.png">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Waterfall</h5>
-                              <p>Arts</p>
-          					   </div>
+                        <div class="card-body p-0 mt-4 flex-grow-1">
+                            <h5 class="mb-1">JELITA</h5>
+                            <a href="https://natusi.co.id/" target="_blank" style="text-decoration: none;">
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-3">CV. NATUSI</span>
+                            </a>
+                            <p class="text-light small mb-2">Mojokerto City Inflation Control Dashboard</p>
+                            <div class="mb-3">
+                                <span class="badge border border-secondary text-dim fw-normal">Building</span>
+                                <span class="badge border border-secondary text-dim fw-normal">Developing</span>
+                            </div>
+                            <div class="project-details text-start mt-3 pt-3 border-top border-secondary border-opacity-25">
+                                <p class="text-dim text-xs mb-1 fw-bold" style="font-size: 0.8rem;">Key Contributions:</p>
+                                <ul class="text-dim text-xs ps-3 mb-0" style="font-size: 0.8rem;">
+                                    <li>Building From Scratch</li>
+                                    <li>Landing Page</li>
+                                    <li>Etc.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div> <!-- item end -->
+                    </div>
+                </div>
 
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-07" title="">
-                        <img alt="" src="images/portfolio/origami.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Origami</h5>
-                              <p>Illustrration</p>
-          					   </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom project-card d-flex flex-column h-100">
+                        <div class="project-img-wrapper">
+                            <img src="images/portfolio/sirama.png" alt="SIRAMA System">
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-                     <a href="#modal-08" title="">
-                        <img alt="" src="images/portfolio/retrocam.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Retrocam</h5>
-                              <p>Web Development</p>
-          					   </div>
+                        <div class="card-body p-0 mt-4 flex-grow-1">
+                            <h5 class="mb-1">SIRAMA</h5>
+                            <a href="https://natusi.co.id/" target="_blank" style="text-decoration: none;">
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-3">CV. NATUSI</span>
+                            </a>
+                            <p class="text-light small mb-2">Pharmacy Information System<br><span class="text-dim" style="font-size: 0.75rem;">RSUD Dr. Wahidin Sudiro Husodo</span></p>
+                            <div class="mb-3">
+                                <span class="badge border border-secondary text-dim fw-normal">Developing</span>
+                                <span class="badge border border-secondary text-dim fw-normal">Maintenance</span>
+                            </div>
+                            <div class="project-details text-start mt-3 pt-3 border-top border-secondary border-opacity-25">
+                                <p class="text-dim text-xs mb-1 fw-bold" style="font-size: 0.8rem;">Key Contributions:</p>
+                                <ul class="text-dim text-xs ps-3 mb-0" style="font-size: 0.8rem;">
+                                    <li>"Update Harga" Feature</li>
+                                    <li>"Retur Item Tak Bertuan" Feature</li>
+                                    <li>Financial Reports</li>
+                                    <li>App & DB Maintenance</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-                  </div>
-          		</div>  <!-- item end -->
-            </div> <!-- galery-wrapper end -->
-         </div> <!-- twelve columns end -->
+                    </div>
+                </div>
 
-
-         <!-- Modal Popup
-	      --------------------------------------------------------------- -->
-         <div id="modal-01" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-coffee.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Coffee Cup</h4>
-			      <p>Drink prepared from roasted coffee beans, seeds of the Coffea plant species. Darkly colored, bitter, and slightly acidic, coffee has a stimulating effect on humans, primarily due to its caffeine content, and is one of the most popular drinks in the world.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Webdesign</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom project-card d-flex flex-column h-100">
+                        <div class="project-img-wrapper">
+                            <img src="images/portfolio/erm-ranap.png" alt="ERM/TAPMAN">
+                        </div>
+                        <div class="card-body p-0 mt-4 flex-grow-1">
+                            <h5 class="mb-1">ERM</h5>
+                            <a href="https://natusi.co.id/" target="_blank" style="text-decoration: none;">
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-3">CV. NATUSI</span>
+                            </a>
+                            <p class="text-light small mb-2">Medical Records System<br><span class="text-dim" style="font-size: 0.75rem;">RSUD Dr. Wahidin Sudiro Husodo</span></p>
+                            <div class="mb-3">
+                                <span class="badge border border-secondary text-dim fw-normal">Developing</span>
+                                <span class="badge border border-secondary text-dim fw-normal">Maintenance</span>
+                            </div>
+                            <div class="project-details text-start mt-3 pt-3 border-top border-secondary border-opacity-25">
+                                <p class="text-dim text-xs mb-1 fw-bold" style="font-size: 0.8rem;">Key Contributions:</p>
+                                <ul class="text-dim text-xs ps-3 mb-0" style="font-size: 0.8rem;">
+                                    <li>Creating Form Features</li>
+                                    <li>System Optimization</li>
+                                    <li>Optimizing Database</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-	      </div><!-- modal-01 End -->
+        </div>
+    </section>
 
-         <div id="modal-02" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-console.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Console</h4>
-			      <p>The text entry and display device for system administration messages, particularly those from the BIOS or boot loader, the kernel, from the init system and from the system logger.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Web Development</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
+    <section id="certificates" class="section-padding" style="background-color: #162033;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Certificates</h2>
+                </div>
+                <p class="text-dim">Achievements & Qualifications</p>
             </div>
-	      </div><!-- modal-02 End -->
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4" data-aos="fade-up">
+                    <div class="card-custom cert-card p-4 h-100">
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 mb-3">
+                                <div class="cert-img-wrapper rounded">
+                                    <img src="images/certificates/webdev.jpg" alt="Backend Cert" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h5>Belajar Membuat Aplikasi Back-End</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Dicoding Indonesia</span>
+                                <p class="text-dim small mt-2">Pemahaman mendalam tentang pengembangan aplikasi back-end untuk pemula.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-         <div id="modal-03" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-judah.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Judah</h4>
-			      <p> Jewish national and cultural symbol, traditionally regarded as the symbol of the tribe of Judah.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom cert-card p-4 h-100">
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 mb-3">
+                                <div class="cert-img-wrapper rounded">
+                                    <img src="images/certificates/webdev.jpg" alt="Bootcamp Cert" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h5>Bootcamp Programming</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Intensive Training</span>
+                                <p class="text-dim small mt-2">Pelatihan intensif pemrograman fullstack dan best practice industri.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom cert-card p-4 h-100">
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 mb-3">
+                                <div class="cert-img-wrapper rounded">
+                                    <img src="images/certificates/network.jpg" alt="Network Cert" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h5>CCNP: Core Networking</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Professional Certification</span>
+                                <p class="text-dim small mt-2">Sertifikasi profesional dalam manajemen dan konfigurasi jaringan enterprise.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-	      </div><!-- modal-03 End -->
+        </div>
+    </section>
 
-         <div id="modal-04" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-intothelight.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Into the Light</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Photography</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center contact-box" data-aos="fade-up">
+                    <h2 class="mb-4">Get In Touch</h2>
+                    <p class="text-dim mb-5">
+                        Send Me Advice, Suggestions, or Anything below. I'm currently in Mojokerto, East Java.
+                    </p>
+                    
+                    <a href="mailto:farisafn008@gmail.com" class="btn btn-custom btn-lg mb-5">
+                        <i class="fas fa-paper-plane me-2"></i> farisafn008@gmail.com
+                    </a>
+
+                    <div class="social-icons mt-4">
+                        <a href="https://github.com/affandi-arc" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/affandi-ars/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="http://instagram.com/afndi_arc" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
             </div>
-	      </div><!-- modal-04 End -->
+        </div>
+    </section>
 
-         <div id="modal-05" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-farmerboy.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Farmer Boy</h4>
-			      <p>Only retro car in there.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Webdesign</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-	      </div><!-- modal-05 End -->
+    <footer>
+        <div class="container">
+            <p class="mb-0 text-dim small">
+                &copy; 2025 Faris Affandi. Built with Bootstrap 5.
+            </p>
+        </div>
+    </footer>
 
-         <div id="modal-06" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/image.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Waterfall</h4>
-			      <p>Point in a river or stream where water flows over a vertical drop or a series of steep drops.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Photography</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-	      </div><!-- modal-06 End -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
 
-         <div id="modal-07" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-origami.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Origami</h4>
-			      <p>the art of paper folding, which is often associated with Japanese culture.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Illustration</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-	      </div><!-- modal-07 End -->
+        var typed = new Typed('#typed-text', {
+            strings: ['Software Engineer', 'Embedded System Engineer'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
 
-         <div id="modal-08" class="popup-modal mfp-hide">
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-retrocam.jpg" alt="" />
-		      <div class="description-box">
-			      <h4>Retrocam</h4>
-			      <p>A camera retro.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Webdesign, Photography</span>
-		      </div>
-            <div class="link-box">
-               <a href="http://www.behance.net" target="_blank">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-	      </div><!-- modal-01 End -->
-      </div> <!-- row End -->
-   </section> <!-- Galery Section End-->
-
-
-   <!-- Call-To-Action Section
-   ================================================== -->
-   <section id="call-to-action">
-      <div class="row">
-         <div class="two columns header-col">
-            <h1><span>A Things.</span></h1>
-         </div>
-         <div class="seven columns">
-            <h2><span class="lead">Wake Me Up</span></h2>
-            <p><span class="lead">Summer has gone and fast the innocent can never last <br> Wake me up when September ends <br>Like my father come to past seven years has gone so fast <br>Wake me up when September ends </span></p>
-         </div>
-         <div class="three columns action">
-         </div>
-      </div>
-   </section> <!-- Call-To-Action Section End-->
-   <!-- Quotes Section
-   ================================================== -->
-   <section id="testimonials">
-      <div class="text-container">
-         <div class="row">
-            <div class="two columns header-col">
-               <h1><span>Quotes</span></h1>
-            </div>
-            <div class="ten columns flex-container">
-               <div class="flexslider">
-                  <ul class="slides">
-                     <li>
-                        <blockquote>
-                           <p>“Wake up to reality! Nothing ever goes as planned in this accursed world. The longer you live, the more you realize that the only things that truly exist in this reality are merely pain. suffering and futility.
-                           </p>
-                           <cite>Madara Uchiha</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-                     <li>
-                        <blockquote>
-                           <p>“You think you're the only ones who matter. You think you can put off death. But peace that made you foolish and thoughtless. If you kill someone, someone else will kill you... this hatred binds us together.”
-                           </p>
-                           <cite>Nagato Uzumaki</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-                  </ul>
-               </div> <!-- div.flexslider ends -->
-            </div> <!-- div.flex-container ends -->
-         </div> <!-- row ends -->
-      </div>  <!-- text-container ends -->
-   </section> <!-- Testimonials Section End-->
-
-
-   <!-- Contact Section
-   ================================================== -->
-   <section id="contact">
-         <div class="row section-head">
-            <div class="two columns header-col">
-               <h1><span>Get In Touch.</span></h1>
-            </div>
-            <div class="ten columns" style="padding-top: 25px;">
-                  <p class="lead" style="font-size:200%; ">Send Me Advice, Suggestions, or Anything in Below.</p>
-            </div>
-         </div>
-         <div class="row">
-            <div class="eight columns">
-               <!-- form -->
-               <form action="" method="post" id="contactForm" name="contactForm">
-					<fieldset>
-                  <div>
-						   <label for="contactName">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactName" name="contactName" required>
-                  </div>
-                  <div>
-						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="email" value="" size="35" id="contactEmail" name="contactEmail" required>
-                  </div>
-                  <div>
-						   <label for="contactSubject">Subject</label>
-						   <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
-                  </div>
-                  <div>
-                     <label for="contactMessage">Message <span class="required">*</span></label>
-                     <textarea cols="50" rows="5" id="contactMessage" name="contactMessage" required></textarea>
-                  </div>
-                  <div>
-                     <button class="submit">Submit</button>
-                     <span id="image-loader">
-                        <img alt="" src="images/loader.gif">
-                     </span>
-                  </div>
-					</fieldset>
-				   </form> <!-- Form End -->
-
-               <!-- contact-warning -->
-               <div id="message-warning"> Error !!!!</div>
-               <!-- contact-success -->
-				   <div id="message-success">
-                  <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-				   </div>
-            </div>
-            <aside class="four columns footer-widgets">
-               <div class="widget widget_contact">
-					   <h4>Contact Me on : </h4>
-					   <p class="address">
-						Affandi Arc<br>
-						Mojokerto <br>
-						East Java, Indonesia<br>
-						<span>(+62) 812-3456-7890</span>
-	               </p>
-				   </div>
-            </aside>
-      </div>
-   </section> <!-- Contact Section End-->
-
-
-   <!-- footer
-   ================================================== -->
-   <footer>
-      <div class="row">
-         <div class="twelve columns">
-            <ul class="social-links">
-               <li><a href="https://github.com/affandi-arc" target="_blank"><i class="fa fa-github"></i></a></li>
-               <li><a href="https://www.linkedin.com/in/affandi-ars/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="http://instagram.com/afndi_arc" target="_blank"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-            <ul class="copyright">
-               <li>&copy; Copyright 2022</li>
-               <li>Modified by <a href="http://instagram.com/afndi_arc" title="Styleshout" target="_blank">Affandi Arc</a></li>   
-            </ul>
-         </div>
-         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-      </div>
-   </footer> <!-- Footer End-->
-
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-   <script src="js/jquery.flexslider.js"></script>
-   <script src="js/waypoints.js"></script>
-   <script src="js/jquery.fittext.js"></script>
-   <script src="js/magnific-popup.js"></script>
-   <script src="js/init.js"></script>
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.getElementById('navbar').classList.add('shadow-sm');
+                document.getElementById('navbar').style.background = 'rgba(15, 23, 42, 0.9)';
+            } else {
+                document.getElementById('navbar').classList.remove('shadow-sm');
+                document.getElementById('navbar').style.background = 'rgba(30, 41, 59, 0.7)';
+            }
+        });
+    </script>
 </body>
-
-<!-- THIS DESIGN CREATED BY STYLESHOUT -->
-<!-- here's Link https://www.themezy.com/free-website-templates/151-ceevee-free-responsive-website-template -->
 </html>
